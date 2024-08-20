@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException
 import java.util.UUID
 
 @RestController
-@RequestMapping("/todo")
+@RequestMapping("v1/todo")
 class ToDoController(
     val toDoService: ToDoService
 ) {

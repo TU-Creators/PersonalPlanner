@@ -1,9 +1,11 @@
 plugins {
     kotlin("jvm") version "1.9.24"
     kotlin("plugin.spring") version "1.9.24"
+    kotlin("plugin.jpa") version "1.9.24"
+
     id("org.springframework.boot") version "3.3.2"
     id("io.spring.dependency-management") version "1.1.6"
-    kotlin("plugin.jpa") version "1.9.24"
+    id("org.springdoc.openapi-gradle-plugin") version "1.9.0"
 }
 
 group = "at.tucoders.personalplanner"
@@ -24,10 +26,15 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
+
     runtimeOnly("com.h2database:h2")
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
@@ -39,4 +46,24 @@ kotlin {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+openApi {
+    apiDocsUrl.set("http://localhost:8081/api/v3/api-docs")
+    outputDir.set(file("$buildDir/docs"))
+    outputFileName.set("openapi.json")
+    waitTimeInSeconds.set(15)
+    //trustStore.set("keystore/truststore.p12")
+    //trustStorePassword.set("changeit".toCharArray())
+    //groupedApiMappings.set(
+    //   listOf("https://localhost:8080/v3/api-docs/groupA" to "swagger-groupA.json",
+    //        "https://localhost:8080/v3/api-docs/groupB" to "swagger-groupB.json")
+    // )
+    customBootRun {
+        args.set(listOf("--spring.profiles.active=dev"))
+    }
+    //requestHeaders = listOf(
+    //    "x-forwarded-host" = "custom-host",
+    //    "x-forwarded-port" = "7000"
+    //)
 }

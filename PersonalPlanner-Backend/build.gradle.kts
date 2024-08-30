@@ -53,17 +53,7 @@ openApi {
     outputDir.set(file("$buildDir/docs"))
     outputFileName.set("openapi.json")
     waitTimeInSeconds.set(15)
-    //trustStore.set("keystore/truststore.p12")
-    //trustStorePassword.set("changeit".toCharArray())
-    //groupedApiMappings.set(
-    //   listOf("https://localhost:8080/v3/api-docs/groupA" to "swagger-groupA.json",
-    //        "https://localhost:8080/v3/api-docs/groupB" to "swagger-groupB.json")
-    // )
     customBootRun {
         args.set(listOf("--spring.profiles.active=dev"))
     }
-    //requestHeaders = listOf(
-    //    "x-forwarded-host" = "custom-host",
-    //    "x-forwarded-port" = "7000"
-    //)
 }

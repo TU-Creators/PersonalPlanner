@@ -10,9 +10,12 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint PersonalPlanner-UI --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src"
+    "format": "prettier --write src",
+    "generate-api": "npx openapi-generator-cli generate",
+    "postinstall": "npm run generate-api"
   },
   "dependencies": {
+    "@openapitools/openapi-generator-cli": "^2.13.5",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"

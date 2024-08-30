@@ -66,3 +66,5 @@ tasks.register("build", NpmTask::class) {
     this.dependsOn("npmInstall")
     this.args = listOf("run", "build")
 }
+
+tasks.findByPath("npmInstall")?.dependsOn(":PersonalPlanner-Backend:generateOpenApiDocs")

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Container from '@/components/Container.vue';
-
 </script>
 
 <template>
@@ -9,6 +8,4 @@ import Container from '@/components/Container.vue';
     </Container>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

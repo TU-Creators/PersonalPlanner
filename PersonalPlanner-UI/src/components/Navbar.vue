@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import type { MenuItem, MenuItemCommandEvent } from 'primevue/menuitem';
 import router from '@/router';
 import { Routenames } from '@/router/Routenames';
@@ -12,7 +11,7 @@ const menuitems: MenuItem[] = [
         command: handleItemClick
     },
     {
-        label: 'LVA\'s',
+        label: "LVA's",
         icon: 'pi pi-star',
         routeName: Routenames.LVAS,
         command: handleItemClick
@@ -24,17 +23,16 @@ const menuitems: MenuItem[] = [
         command: handleItemClick
     },
     {
-        label: 'TODO\'s',
+        label: "TODO's",
         icon: 'pi pi-check-square',
         routeName: Routenames.TODOS,
         command: handleItemClick
-    },
+    }
 ];
 
 function handleItemClick(event: MenuItemCommandEvent): void {
-    router.push({name: event.item.routeName});
+    router.push({ name: event.item.routeName });
 }
-
 </script>
 
 <template>
@@ -48,8 +46,8 @@ function handleItemClick(event: MenuItemCommandEvent): void {
 </template>
 
 <style scoped lang="scss">
-    .endbox {
-        display: flex;
-        gap: 1rem;
-    }
+.endbox {
+    display: flex;
+    gap: 1rem;
+}
 </style>

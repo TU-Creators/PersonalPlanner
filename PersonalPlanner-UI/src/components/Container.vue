@@ -7,7 +7,7 @@
 </template>
 
 <style scoped lang="scss">
-@use "../assets/breakpoints";
+@use '../assets/breakpoints';
 
 .container {
     margin: auto;

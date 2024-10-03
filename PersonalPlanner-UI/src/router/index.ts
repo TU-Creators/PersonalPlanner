@@ -27,7 +27,7 @@ const router = createRouter({
             path: '/calendar',
             name: Routenames.CALENDAR,
             component: CalendarView
-        },
+        }
     ]
 });
 

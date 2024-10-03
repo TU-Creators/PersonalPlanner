@@ -8,5 +8,4 @@ import Navbar from '@/components/Navbar.vue';
     <RouterView />
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

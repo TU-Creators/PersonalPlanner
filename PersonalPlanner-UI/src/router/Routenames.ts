@@ -3,4 +3,4 @@ export const Routenames = {
     LVAS: 'lvas',
     CALENDAR: 'calendar',
     TODOS: 'todos'
-}
+};

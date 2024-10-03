@@ -9,5 +9,5 @@ data class LvaDto(
     @JsonProperty("name")
     val name: String,
     @JsonProperty("ects")
-    val ects: Int
+    val ects: Int?
 )

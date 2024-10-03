@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
 import { Routenames } from '@/router/Routenames';
+import HomeView from '@/views/HomeView.vue';
 import CalendarView from '@/views/CalendarView.vue';
 import TodosView from '@/views/TodosView.vue';
 import LvasView from '@/views/LvasView.vue';

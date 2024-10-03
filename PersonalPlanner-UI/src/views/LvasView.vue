@@ -5,7 +5,7 @@ import Container from '@/components/Container.vue';
 
 <template>
     <Container>
-        <h1>Hello page</h1>
+        <h1>LVA's</h1>
     </Container>
 </template>
 

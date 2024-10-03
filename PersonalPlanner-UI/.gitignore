@@ -31,3 +31,5 @@ coverage
 
 # generated lib
 src/lib/generated
+
+components.d.ts

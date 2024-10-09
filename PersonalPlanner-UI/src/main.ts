@@ -8,10 +8,17 @@ import Aura from '@primevue/themes/aura';
 import App from './App.vue';
 import router from './router';
 import { definePreset } from '@primevue/themes';
+import { useAuthenticationStore } from '@/store/authentication.store';
 
+const pinia = createPinia();
 const app = createApp(App);
 
-app.use(createPinia());
+app.use(pinia);
+
+const authStore = useAuthenticationStore();
+// Only possible if we only build for browsers with top lvl await
+// await authStore.init();
+
 app.use(router);
 
 const adaptedPreset = definePreset(Aura, {

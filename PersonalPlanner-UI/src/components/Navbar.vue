@@ -2,6 +2,15 @@
 import type { MenuItem, MenuItemCommandEvent } from 'primevue/menuitem';
 import router from '@/router';
 import { Routenames } from '@/router/Routenames';
+import { onMounted, ref } from 'vue';
+import { useAuthenticationStore } from '@/store/authentication.store';
+import type { User } from '@auth0/auth0-spa-js/src/global';
+import Popover from 'primevue/popover';
+
+const isAuthenticated = ref(false);
+const user = ref<User | undefined>(undefined);
+const authStore = useAuthenticationStore();
+const userPopover = ref<typeof Popover | undefined>(undefined);
 
 const menuitems: MenuItem[] = [
     {
@@ -33,13 +42,28 @@ const menuitems: MenuItem[] = [
 function handleItemClick(event: MenuItemCommandEvent): void {
     router.push({ name: event.item.routeName });
 }
+
+const toggleUserPopover = (event: PointerEvent) => {
+    userPopover?.value?.toggle(event);
+};
+
+onMounted(async () => {
+    isAuthenticated.value = await authStore.isAuthenticated();
+    user.value = await authStore.getUser();
+});
 </script>
 
 <template>
     <Menubar :model="menuitems">
         <template #end>
-            <div class="endbox">
-                <Avatar icon="pi pi-user" shape="circle" />
+            <div v-if="isAuthenticated" class="endbox">
+                <Avatar :icon="user?.picture != null ? undefined : 'pi pi-user'" shape="circle" :image="user?.picture" @click="toggleUserPopover" />
+                <Popover ref="userPopover">
+                    <h3>{{ user?.name }}</h3>
+                </Popover>
+            </div>
+            <div v-else class="endbox">
+                <button label="Login" />
             </div>
         </template>
     </Menubar>
@@ -49,5 +73,6 @@ function handleItemClick(event: MenuItemCommandEvent): void {
 .endbox {
     display: flex;
     gap: 1rem;
+    align-items: center;
 }
 </style>

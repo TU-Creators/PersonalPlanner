@@ -1,34 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import { Routenames } from '@/router/Routenames';
-import HomeView from '@/views/HomeView.vue';
-import CalendarView from '@/views/CalendarView.vue';
-import TodosView from '@/views/TodosView.vue';
-import LvasView from '@/views/LvasView.vue';
+import { createRouter } from 'vue-router';
+import { routes } from '@/router/Routes';
+import { globalNavigationGuard } from '@/router/GlobalNavigationGuard';
 
-const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
-    routes: [
-        {
-            path: '/',
-            name: Routenames.HOME,
-            component: HomeView
-        },
-        {
-            path: '/lvas',
-            name: Routenames.LVAS,
-            component: LvasView
-        },
-        {
-            path: '/todo',
-            name: Routenames.TODOS,
-            component: TodosView
-        },
-        {
-            path: '/calendar',
-            name: Routenames.CALENDAR,
-            component: CalendarView
-        }
-    ]
-});
+const router = createRouter(routes);
+
+router.beforeEach(globalNavigationGuard);
 
 export default router;

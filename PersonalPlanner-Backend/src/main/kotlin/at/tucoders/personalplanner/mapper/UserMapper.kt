@@ -8,9 +8,9 @@ class UserMapper {
         fun UserEntity.toDto(): UserDto {
             return UserDto(
                 this.id,
-                this.username,
-                this.firstname,
-                this.lastname
+                this.userId,
+                this.name,
+                this.email
             )
         }
     }

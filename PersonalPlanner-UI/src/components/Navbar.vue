@@ -50,6 +50,10 @@ const redirectToLogout = () => {
     router.push({ name: Routenames.LOGOUT });
 };
 
+const printUser = () => {
+    console.log(authStore.user);
+};
+
 const toggleUserPopover = (event: PointerEvent) => {
     userPopover?.value?.toggle(event);
 };
@@ -63,6 +67,7 @@ const toggleUserPopover = (event: PointerEvent) => {
                 <Popover ref="userPopover">
                     <h3>{{ user?.name }}</h3>
                     <Button label="Logout" @click="redirectToLogout" />
+                    <Button label="Print user" @click="printUser" />
                 </Popover>
             </div>
             <div v-else class="endbox">

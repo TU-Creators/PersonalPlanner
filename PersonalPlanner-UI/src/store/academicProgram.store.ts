@@ -19,22 +19,32 @@ export const useAcademicProgramStore = defineStore('academicProgram', () => {
     };
 
     const createProgram = async (program: AcademicProgramDto): Promise<AcademicProgramDto> => {
-        programs.value?.push(await academicProgramApi.createProgram(program));
+        const createdProgram = await academicProgramApi.createProgram({
+            academicProgramDto: program
+        });
+        programs.value?.push(createdProgram);
+        return createdProgram;
     };
 
     const updateProgram = async (program: AcademicProgramDto): Promise<AcademicProgramDto> => {
-        const updatedDto = await academicProgramApi.updateProgram(program);
+        const updatedDto = await academicProgramApi.updateProgram({
+            academicProgramDto: program
+        });
         const savedProgram = programs.value?.find((value) => value.id === program.id);
-        savedProgram.identifier = updatedDto.identifier;
-        savedProgram.name = updatedDto.name;
-        savedProgram.startingYear = updatedDto.startingYear;
-        savedProgram.startingSemester = updatedDto.startingSemester;
-        savedProgram.requiredEcts = updatedDto.requiredEcts;
+        savedProgram!.identifier = updatedDto.identifier;
+        savedProgram!.name = updatedDto.name;
+        savedProgram!.startingYear = updatedDto.startingYear;
+        savedProgram!.startingSemester = updatedDto.startingSemester;
+        savedProgram!.requiredEcts = updatedDto.requiredEcts;
+        return savedProgram!;
     };
 
-    const deleteProgram = async (id: string) => {
-        const deletedProgram = await academicProgramApi.deleteProgram(id);
+    const deleteProgram = async (id: string): Promise<AcademicProgramDto> => {
+        const deletedProgram = await academicProgramApi.deleteProgram({
+            id
+        });
         programs.value = programs.value?.filter((value) => value.id !== deletedProgram.id);
+        return deletedProgram;
     };
 
     return {

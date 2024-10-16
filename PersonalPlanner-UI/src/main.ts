@@ -8,11 +8,12 @@ import Aura from '@primevue/themes/aura';
 import App from './App.vue';
 import router from './router';
 import { definePreset } from '@primevue/themes';
+import { useAuthenticationStore } from '@/store/authentication.store';
 
+const pinia = createPinia();
 const app = createApp(App);
 
-app.use(createPinia());
-app.use(router);
+app.use(pinia);
 
 const adaptedPreset = definePreset(Aura, {
     semantic: {
@@ -41,4 +42,10 @@ app.use(PrimeVue, {
     }
 });
 
-app.mount('#app');
+// Authentication store needs to be initialised before router mounts since globalNavigationGuard is being checked
+// instantly after app.user(router)
+const authStore = useAuthenticationStore();
+authStore.init().finally(() => {
+    app.use(router);
+    app.mount('#app');
+});

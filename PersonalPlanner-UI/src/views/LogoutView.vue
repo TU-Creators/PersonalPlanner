@@ -3,7 +3,9 @@ import Container from '@/components/Container.vue';
 </script>
 
 <template>
-    <Container> </Container>
+    <Container>
+        <h1>You are being logged out...</h1>
+    </Container>
 </template>
 
 <style scoped lang="scss"></style>

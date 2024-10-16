@@ -10,7 +10,11 @@ spring:
         database-platform: org.hibernate.dialect.H2Dialect
         hibernate:
             ddl-auto: update
-
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    issuer-uri: ${OIDC-ISSUER-URI:}
 springdoc:
     api-docs:
         enabled: false
@@ -27,13 +31,26 @@ server:
 spring:
     config:
       activate:
-          on-profile: dev
+          on-profile: openapi
 
 springdoc:
     api-docs:
         enabled: true
     swagger-ui:
         enabled: true
+
+server:
+    port: 8081
+
+---
+
+spring:
+    config:
+        activate:
+            on-profile: dev
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
 
 server:
     port: 8081

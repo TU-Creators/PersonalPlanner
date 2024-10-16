@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("v1/course")
 class CourseController(
-    val courseService: CourseService
+    val lvaService: CourseService
 ) {
 
     @GetMapping
     fun getCourses(): List<CourseDto> {
-        return courseService.findAll()
+        return lvaService.findAll()
     }
 
 }

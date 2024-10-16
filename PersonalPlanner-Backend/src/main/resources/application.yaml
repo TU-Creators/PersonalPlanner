@@ -48,6 +48,9 @@ spring:
     config:
         activate:
             on-profile: dev
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
 
 server:
     port: 8081

@@ -14,14 +14,14 @@ class UserEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     val id: UUID? = null,
-    @Column(nullable = false)
-    var username: String,
-    @Column(nullable = false)
-    var firstname: String,
-    @Column(nullable = false)
-    var lastname: String,
+    @Column(nullable = false, unique = true)
+    var userId: String,
+    @Column
+    var name: String?,
+    @Column
+    var email: String?,
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    val courses: Set<CourseEntity>
+    val programs: Set<AcademicProgramEntity>
 ) {
 }

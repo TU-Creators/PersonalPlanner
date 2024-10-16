@@ -8,10 +8,11 @@ class CourseMapper {
         fun CourseEntity.toDto(): CourseDto {
             return CourseDto(
                 this.id,
+                this.identifier,
                 this.name,
+                this.ects,
                 this.startingYear,
-                this.startingSemester,
-                this.requiredEcts
+                this.semester
             )
         }
     }

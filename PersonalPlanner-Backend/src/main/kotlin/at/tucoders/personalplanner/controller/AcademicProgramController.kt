@@ -18,27 +18,27 @@ class AcademicProgramController(
     val service: AcademicProgramService
 ) {
     @GetMapping
-    fun findAll(): List<AcademicProgramDto> {
+    fun findAllPrograms(): List<AcademicProgramDto> {
         return service.findAll()
     }
 
     @GetMapping("/{id}")
-    fun findAll(@PathVariable("id") id: UUID): AcademicProgramDto {
+    fun findProgramById(@PathVariable("id") id: UUID): AcademicProgramDto {
         return service.findById(id)
     }
 
     @PostMapping
-    fun create(@RequestBody academicProgramDto: AcademicProgramDto): AcademicProgramDto {
+    fun createProgram(@RequestBody academicProgramDto: AcademicProgramDto): AcademicProgramDto {
         return service.create(academicProgramDto)
     }
 
     @PutMapping
-    fun update(@RequestBody academicProgramDto: AcademicProgramDto) {
-        service.update(academicProgramDto)
+    fun updateProgram(@RequestBody academicProgramDto: AcademicProgramDto): AcademicProgramDto {
+        return service.update(academicProgramDto)
     }
 
     @DeleteMapping("/{id}")
-    fun delete(@PathVariable("id") id: UUID) {
-        service.delete(id)
+    fun deleteProgram(@PathVariable("id") id: UUID): AcademicProgramDto {
+        return service.delete(id)
     }
 }
